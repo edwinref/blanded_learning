@@ -42,6 +42,10 @@ export class ClasseService {
   public getClasse(id: number):Observable<Classe>{
     return this.http.get<Classe>(environment.backendHost+"/classes/"+id);
   }
+
+  public getClasseByFiliere(id: number):Observable<Classe[]>{
+    return this.http.get<Classe[]>(environment.backendHost+"/classes/filiere/"+id);
+  }
   public deleteClasse(id: number): Observable<any>{
     return this.http.delete(environment.backendHost+"/classes/"+id);
   }

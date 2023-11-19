@@ -49,6 +49,11 @@ export class SidebarComponent implements OnInit{
     icon: "../assets/img/icons/icons8-level-50.png"
   },
     {
+      link: "/groups",
+      title: "Groups",
+      icon: "../assets/img/icons/icons8-level-50.png"
+    },
+    {
       link: "/coursmodules",
       title: "Cours Model",
       icon: "../assets/img/icons/icons8-study-48.png"

@@ -46,6 +46,9 @@ import {EditModuleComponent} from "./components/edit/edit-coursmodule/edit-cours
 import { EditEtudComponent } from './components/edit/edit-etud/edit-etud.component';
 import { GestionCriteriaComponent } from './components/gestion/gestion-criteria/gestion-criteria.component';
 import { AddCriteriaComponent } from './components/add/add-criteria/add-criteria.component';
+import { GestionGroupsComponent } from './components/gestion/gestion-groups/gestion-groups.component';
+import { EditGroupsComponent } from './components/edit/edit-groups/edit-groups.component';
+import { AddGroupComponent } from './components/add/add-group/add-group.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +91,10 @@ import { AddCriteriaComponent } from './components/add/add-criteria/add-criteria
     EditEtudComponent,
     GestionCriteriaComponent,
     AddCriteriaComponent,
-    BackgroundComponent
+    BackgroundComponent,
+    GestionGroupsComponent,
+    EditGroupsComponent,
+    AddGroupComponent
   ],
   imports: [
     BrowserModule,

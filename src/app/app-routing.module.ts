@@ -29,6 +29,9 @@ import {AddNewEtudiantComponent} from "./components/add/add-new-etudiant/add-new
 import {EditEtudComponent} from "./components/edit/edit-etud/edit-etud.component";
 import {GestionCriteriaComponent} from "./components/gestion/gestion-criteria/gestion-criteria.component";
 import {AddCriteriaComponent} from "./components/add/add-criteria/add-criteria.component";
+import {GestionGroupsComponent} from "./components/gestion/gestion-groups/gestion-groups.component";
+import {EditGroupsComponent} from "./components/edit/edit-groups/edit-groups.component";
+import {AddGroupComponent} from "./components/add/add-group/add-group.component";
 
 const routes: Routes = [
   { path :'' , component: HomeComponent},
@@ -49,6 +52,9 @@ const routes: Routes = [
   {path:'etud/edit',component:EditEtudComponent},
   {path:'criteria',component:GestionCriteriaComponent},
   {path:'crit/add',component:AddCriteriaComponent},
+  {path:'groups',component:GestionGroupsComponent},
+  {path:'groups/edit',component:EditGroupsComponent},
+  {path:'groups/add',component:AddGroupComponent},
     { path :'departements/edit' , component: EditDepartementComponent},
     { path :'salles/edit' , component: EditSalleComponent},
     { path :'filieres/edit' , component: EditFiliereComponent},
