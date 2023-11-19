@@ -13,9 +13,9 @@ export class AffectService {
 
   constructor(private http:HttpClient) { }
 
-  public saveAffect(affect: AffectationModuleGroupeTeacher): Observable<Classe> {
+  public saveAffect(affect: AffectationModuleGroupeTeacher): Observable<AffectationModuleGroupeTeacher> {
     // Include filiereId as a query parameter in the request
-    return this.http.post<Classe>(
+    return this.http.post<AffectationModuleGroupeTeacher>(
       `${environment.backendHost}/affects`,
       affect
     );

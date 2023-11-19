@@ -24,28 +24,28 @@ export class SidebarComponent implements OnInit{
   },*/
     {
       link: "/salles",
-      title: "Salles",
+      title: "Rooms",
       icon: "../assets/img/icons/icons8-classroom-50.png"
     } ,
     {
       link: "/filieres",
-      title: "Filières",
+      title: "Majors",
       icon: "../assets/img/icons/icons8-descending-sorting-50.png"
     },
 
     {
       link: "/profs",
-      title: "Professeurs",
+      title: "Professors",
       icon: "../assets/img/icons/icons8-teacher-50.png"
     },
     {
       link: "/etudiant",
-      title: "Etudiants",
+      title: "Students",
       icon: "../assets/img/icons/icons8-student-50.png"
     },
   {
     link: "/classes",
-    title: "Classes",
+    title: "Grades",
     icon: "../assets/img/icons/icons8-level-50.png"
   },
     {

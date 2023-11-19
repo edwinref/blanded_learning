@@ -11,6 +11,10 @@ import {Groupe} from "../../../models/groupe.model";
 import {GroupeService} from "../../../services/groupe.service";
 import {AffectationModuleGroupeTeacher} from "../../../models/affect.model";
 import {AffectService} from "../../../services/affect.service";
+import {Filiere} from "../../../models/filieres.models";
+import {Classe} from "../../../models/classes.models";
+import {FiliereService} from "../../../services/filiere.service";
+import {ClasseService} from "../../../services/classe.service";
 
 @Component({
   selector: 'app-gestion-module',
@@ -37,7 +41,10 @@ export class GestionModuleComponent implements OnInit {
     private moduleService: ModuleService,
     private fb: FormBuilder,
     private router: Router,
-    private profService:ProfServiceService,private renderer: Renderer2, private groupeservice:GroupeService,private affectservice:AffectService,
+    private profService:ProfServiceService,
+    private classeService:ClasseService,
+    private groupeService:GroupeService,
+    private filiereService:FiliereService,private renderer: Renderer2, private groupeservice:GroupeService,private affectservice:AffectService,
   ) {}
 
   ngOnInit(): void {
@@ -47,8 +54,8 @@ export class GestionModuleComponent implements OnInit {
 
     // Appel de la fonction pour récupérer les modules depuis l'API
     this.loadModules();
-    this.loadModulles();
     this.getAllProf();
+    this.fetchFilieres();
   }
 
   getAllProf(){
@@ -76,15 +83,59 @@ export class GestionModuleComponent implements OnInit {
     );
   }
 
-  loadModulles() {
-    this.moduleService.getModulles().subscribe(
+  getGroupesByClasse(id:any) {
+      this.groupeService.getByClasse(id).subscribe(data =>{
+        this.groupes = data;
+        console.log(this.groupes)
+      },error =>{
+        console.log(error)
+      })
+  }
+
+  loadModulles(id:any) {
+    console.log(id)
+    console.log("-----------------------------")
+    this.moduleService.getModullesByClasse(id).subscribe(
       (data: Module[]) => {
         this.modulles = data; //
         console.log(this.modulles)
       },
       (error) => {
-        this.errorMessage = 'Erreur lors de la récupération des modules.';
+        this.errorMessage = 'Error retrieving modules.';
         console.error(error);
+      }
+    );
+  }
+
+  filieres:Filiere[]=[];
+  fetchFilieres() {
+    this.filiereService.getAllFilieres().subscribe(
+      (response: any) => {
+        if (response && Array.isArray(response.content)) {
+          const filieres: Filiere[] = response.content;
+          this.filieres = filieres;
+          console.log(this.filieres);
+        } else {
+          console.error('Unexpected response from the server:', response);
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+  Classes:Classe[]=[];
+  fetchClass(id:any) {
+    this.classeService.getClasseByFiliere(id).subscribe(
+      (response: any) => {
+        console.log(response)
+        const classes: Classe[] = response;
+        console.log(classes)
+        this.Classes = classes;
+        console.log(this.Classes);
+      },
+      (error) => {
+        console.log(error);
       }
     );
   }
@@ -145,6 +196,7 @@ export class GestionModuleComponent implements OnInit {
     this.renderer.setProperty(modal, 'hidden', true);
   }
   selectedModule: any | null = null;
+  selectedClasseId: any;
 
   getGroupes(){
     console.log(this.selectedModule.id)

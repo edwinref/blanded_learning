@@ -121,21 +121,32 @@
       </div>
       <form #form="ngForm" (ngSubmit)="affect(form)">
       <div class="modal-body">
+            Major
+            <select class="form-control" (change)="fetchClass(filiereSelect.value)" #filiereSelect>
+              <option value="" disabled selected>Select a major</option>
+              <option *ngFor="let filiere of filieres" [value]="filiere.id">{{ filiere.libelle }}</option>
+            </select>
+            Grade (Classe)
+            <select class="form-control select" formControlName="classe" #classeSelect (change)="loadModulles(classeSelect.value);getGroupesByClasse(classeSelect.value)">
+              <option value="" disabled selected>Choose a grade</option>
+              <option *ngFor="let classe of Classes" [value]="classe.id">{{ classe.libelle }}</option>
+              <!-- Add more class options as needed -->
+            </select>
         modules:
-        <select class="form-control select" ngModel name = "module" (change)="getGroupes()" [(ngModel)]="selectedModule">
-          <option value="" disabled selected>Choisir un module</option>
-          <option *ngFor="let module of modules" [ngValue]="module">{{ module.libelle }}</option>
-          <!-- Add more class options as needed -->
+        <select class="form-control select" ngModel name="module">
+          <option value="" disabled selected>Choose a module</option>
+          <option *ngFor="let module of modulles" [ngValue]="module">{{ module.libelle }}</option>
         </select>
+
         teacher:
         <select class="form-control select" ngModel name = "prof">
-          <option value="" disabled selected>Choisir un proffesseur</option>
+          <option value="" disabled selected>Choose a proffessor</option>
           <option *ngFor="let prof of profs" [ngValue]="prof">{{ prof.nom  }} {{prof.prenom}}</option>
           <!-- Add more class options as needed -->
         </select>
         group:
         <select class="form-control select" ngModel name = "groupe">
-          <option value="" disabled selected>Choisir un groupe</option>
+          <option value="" disabled selected>Choose a group</option>
           <option *ngFor="let groupe of groupes" [ngValue]="groupe">{{ groupe.libelle}}</option>
           <!-- Add more class options as needed -->
         </select>

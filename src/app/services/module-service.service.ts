@@ -25,6 +25,9 @@ export class ModuleService  {
   public getModullesByProd(id:number): Observable<Module[]> {
     return this.http.get<Module[]>(`${environment.backendHost}/modules/modullees/`+id);
   }
+  public getModullesByClasse(id:number): Observable<Module[]> {
+    return this.http.get<Module[]>(`${environment.backendHost}/modules/classe/`+id);
+  }
 
   // Search for modules by keyword
   public searchModules(keyword: string, page: number, size: number): Observable<Module> {
