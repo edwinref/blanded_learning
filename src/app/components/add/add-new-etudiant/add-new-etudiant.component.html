@@ -62,10 +62,19 @@
             </div>
             <div class="col-12 col-sm-4">
               <div class="form-group local-forms">
+                <label>Major<span class="login-danger">*</span></label>
+                <select class="form-control" (change)="fetchClass(filiereSelect.value)" #filiereSelect>
+                  <option value="" disabled selected>Select a major</option>
+                  <option *ngFor="let filiere of filieres" [value]="filiere.id">{{ filiere.libelle }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
                 <label>Grade (Classe) <span class="login-danger">*</span></label>
                 <select class="form-control select" formControlName="classe" (change)="getGroupesByClasse()" [(ngModel)]="selectedClasseId">
                   <option value="" disabled selected>Choose a grade</option>
-                  <option *ngFor="let classe of classe" [value]="classe.id">{{ classe.libelle }}</option>
+                  <option *ngFor="let classe of Classes" [value]="classe.id">{{ classe.libelle }}</option>
                   <!-- Add more class options as needed -->
                 </select>
               </div>

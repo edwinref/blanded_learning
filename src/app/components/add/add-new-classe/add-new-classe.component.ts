@@ -84,6 +84,7 @@ export class AddNewClasseComponent implements OnInit {
         this.clService.saveClasse(newClasse, filiereIdToSend).subscribe(
           (data) => {
             console.log('Response data:', data);
+            this.classe = data;
             Swal.fire('Succès', 'Classe ajoutée avec succès', 'success');
             // Reset the form
             this.newClassFormGroup.reset();
@@ -122,13 +123,23 @@ export class AddNewClasseComponent implements OnInit {
     if(this.groupes.length !=0){
       console.log(this.groupes)
       this.groupes.forEach(obj =>{
-        this.groupeService.saveGroupe(obj).subscribe(data =>{
-          console.log(obj)
-        },error => {
-          Swal.fire('error', 'groupe not added correctly', 'error');
-          const buttonElement = this.close.nativeElement as HTMLButtonElement;
-          buttonElement.click();
-        })
+        this.groupeService.saveGroupe(obj).subscribe(
+          (data) => {
+            console.log('Response data:', data);
+            Swal.fire('success', 'Group added successfuly', 'success');
+          },
+          (error) => {
+            console.log('Error status:', error.status);
+            console.log('Error message:', error.message);
+            console.log('Error details:', error.error);
+
+            Swal.fire(
+              'error',
+              'error while adding the groupe' + error.message,
+              'error'
+            );
+          }
+        );
       })
       Swal.fire('Success', 'groups added successfuly', 'success');
       const buttonElement = this.close.nativeElement as HTMLButtonElement;

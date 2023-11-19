@@ -39,14 +39,14 @@ interface CSVData {
 
 export class AddNewEtudiantComponent {
   newProfFormGroup!: FormGroup;
-  classe: Classe[] = [];
+  Classes: Classe[] = [];
 
   groupes:Groupe[]=[];
   semesters: any[] = [];
 
   selectedClasseId: number | null = null; // Initialize it as null
 
-  constructor(private fb: FormBuilder,private profService : EtudiantService, private router:Router,    private classeService: ClasseService,private groupeService:GroupeService
+  constructor(private fb: FormBuilder,private profService : EtudiantService,private filiereService:FiliereService, private router:Router,    private classeService: ClasseService,private groupeService:GroupeService
   ) {}
 
   ngOnInit(): void {
@@ -63,29 +63,45 @@ export class AddNewEtudiantComponent {
       password: this.fb.control(null, [Validators.required]),
       civilite: this.fb.control(null, [Validators.required])
     });
-    this.fetchClasse();
+    this.fetchFilieres();
 
   }
-  fetchClasse() {
-    this.classeService.getClasses1().subscribe(
+  filieres:Filiere[]=[];
+  fetchFilieres() {
+    this.filiereService.getAllFilieres().subscribe(
       (response: any) => {
         if (response && Array.isArray(response.content)) {
-          const filieres: Classe[] = response.content;
-          this.classe = filieres;
-          this.classe.forEach(classeItem => {
-            console.log("claaas " + classeItem.id);
-          });
-          if (this.classe.length > 0) {
-            this.newProfFormGroup.patchValue({ filiere: this.classe[0] });
+          const filieres: Filiere[] = response.content;
+          this.filieres = filieres;
+          console.log(this.filieres);
+          if (this.filieres.length > 0) {
+            this.newProfFormGroup.patchValue({ filiere: this.filieres[0] });
           }
         } else {
           console.error('Unexpected response from the server:', response);
-          // Handle the unexpected response here, such as displaying an error message.
         }
       },
       (error) => {
         console.log(error);
-        // Handle the error here, such as displaying an error message.
+      }
+    );
+  }
+  fetchClass(id:any) {
+    this.classeService.getClasseByFiliere(id).subscribe(
+      (response: any) => {
+        console.log(response)
+        const classes: Classe[] = response;
+        console.log(classes)
+        this.Classes = classes;
+        console.log(this.Classes);
+        if (this.Classes.length > 0) {
+          this.newProfFormGroup.patchValue({ classe: this.Classes[0] });
+        } else {
+          console.error('Unexpected response from the server:', response);
+        }
+      },
+      (error) => {
+        console.log(error);
       }
     );
   }
@@ -117,7 +133,7 @@ export class AddNewEtudiantComponent {
 
       console.log(this.newProfFormGroup.value);
 
-      const classeId = this.classe.find((classe) => classe.id === selectedClasseId);
+      const classeId = this.Classes.find((classe) => classe.id === selectedClasseId);
 
       if (classeId) {
         newEtudiant.classe = classeId; // Create a Classe object with the selected ID
