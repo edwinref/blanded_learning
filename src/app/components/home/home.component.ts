@@ -1,4 +1,3 @@
-import { Prof } from './../../models/prof.models';
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -14,7 +13,7 @@ export class HomeComponent implements OnInit{
   constructor(private cookieService: CookieService) {
   }
   ngOnInit() {
-    this.prof = (this.cookieService.get('role') == 'Ensignant')? true : false; 
+    this.prof = (this.cookieService.get('role') == 'Ensignant')? true : false;
 
   }
 }

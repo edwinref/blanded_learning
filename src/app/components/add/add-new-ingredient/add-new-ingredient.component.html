@@ -1,0 +1,43 @@
+<app-page-header
+  [link]="'ingredients'"
+  [prev]="'ingredients'"
+  [current]="'Add ingredients'"
+></app-page-header>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card comman-shadow">
+      <div class="card-body">
+        <form
+          [formGroup]="newIngredientFormGroup"
+          (ngSubmit)="handleAddDepartement()"
+        >
+          <div class="row">
+            <div class="col-12">
+              <h5 class="form-title student-info">
+                Ingredient Informations<span
+                  ><a href="javascript:;"
+                    ><i class="feather-more-vertical"></i></a
+                ></span>
+              </h5>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Label <span class="login-danger">*</span></label>
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="label ...."
+                  formControlName="libelle"
+                />
+              </div>
+            </div>
+            <div class="student-submit">
+              <button type="submit" class="btn btn-primary">Confirm</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

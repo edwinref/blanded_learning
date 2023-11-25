@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActionsService } from 'src/app/services/actions.service';
-import { ClasseService } from 'src/app/services/classe.service';
-import { EmploiDeTempsService } from 'src/app/services/emploi-de-temps.service';
+
 import Swal from 'sweetalert2';
+import {RecetteService} from "../../../services/recette.service";
 
 @Component({
   selector: 'app-actions',
@@ -17,27 +17,11 @@ export class ActionsComponent implements OnInit{
   spinnerExport:boolean=false;
   importStatus:boolean=false;
   generateStatus:boolean=false;
-  
-  constructor(private actons:ActionsService,private cl:ClasseService,private el:EmploiDeTempsService , private router: Router) { }
+
+  constructor(private actons:ActionsService,private cl:RecetteService, private router: Router) { }
 
   ngOnInit(): void {
-    this.cl.getClasses(0,6).subscribe(
-      data=>{
-        console.log(data);
-        if(data.numberOfElements>0){
-          this.importStatus=true;
-        }
-      }
-    )
-    this.el.getEmplois().subscribe(
-      data=>{
-        console.log(data);
-        if(data.length>0){
-          if(data[0].jour!="" && data[0].jour!=null && data[0].jour)
-            this.generateStatus=true;
-        }
-      }
-    )
+
   }
 
 
@@ -71,7 +55,7 @@ export class ActionsComponent implements OnInit{
     );
   }
 
- 
+
 
   handleExport(){
     console.log("export")
@@ -112,10 +96,10 @@ export class ActionsComponent implements OnInit{
 
 
         // show a loading spinner
-        
-        
 
-        
+
+
+
       }
     }
     )
@@ -137,7 +121,7 @@ export class ActionsComponent implements OnInit{
         // if he confirms, then import the file
         // upload  file
         this.spinnerGenerate=true;
-       this.actons.generateEmploi().subscribe(  
+       this.actons.generateEmploi().subscribe(
           data=>{
             this.generateStatus=true;
             this.spinnerGenerate=false;
@@ -148,20 +132,20 @@ export class ActionsComponent implements OnInit{
           'success'
         )
           }
-        
+
 
         )
 
         // show a loading spinner
-        
-        
+
+
 
       }
     }
     )
   }
 
-  
+
 
 }
  function downloadFile(data: Blob, arg1: string) {

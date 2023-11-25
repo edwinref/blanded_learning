@@ -38,12 +38,12 @@
           <select
             id="field-select"
             title="Select a field"
-            (change)="handleFiliereChange($event.target)"
+            (change)="handleEtapeChange($event.target)"
             class="form-select custom-select"
           >
             <option selected disabled>Sélectionner...</option>
-            <option *ngFor="let filiere of filieres" value="{{ filiere.id }}">
-              {{ filiere.libelle }}
+            <option *ngFor="let etape of etapes" value="{{ etape.id }}">
+              {{ etape.libelle }}
             </option>
           </select>
         </div>

@@ -20,7 +20,7 @@ export class ActionsService {
   }
   public exportFile(): Observable<Blob> {
     // Set the response type to 'blob' to receive binary data
-    return this.http.get(environment.backendHost + "/pdf/classes", { responseType: 'blob' });
+    return this.http.get(environment.backendHost + "/pdf/recettes", { responseType: 'blob' });
   }
   public generateEmploi(): Observable<any> {
     return this.http.get(environment.backendHost + "/emploisDeTemps/generate");
@@ -29,8 +29,8 @@ public exportFileProf(id:number): Observable<Blob> {
     // Set the response type to 'blob' to receive binary data
     return this.http.get(environment.backendHost + "/pdf/enseignants/"+id, { responseType: 'blob' });
   }
-  public exportFileClasse(id:number): Observable<Blob> {
+  public exportFileRecette(id:number): Observable<Blob> {
     // Set the response type to 'blob' to receive binary data
-    return this.http.get(environment.backendHost + "/pdf/classes/"+id, { responseType: 'blob' });
+    return this.http.get(environment.backendHost + "/pdf/recettes/"+id, { responseType: 'blob' });
   }
 }

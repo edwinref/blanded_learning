@@ -1,0 +1,105 @@
+<app-page-header
+  [link]="'ingredients'"
+  [prev]="'Ingredients'"
+  [current]="'Home'"
+></app-page-header>
+
+<div class="student-group-form">
+  <form [formGroup]="searchFormGroup" >
+    <div class="row">
+
+
+      <div class="col-lg-2">
+        <div class="search-student-btn">
+          <button type="btn" class="btn btn-primary">Search</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card card-table">
+      <div class="card-body">
+        <div class="page-header">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="page-title">Ingredient</h3>
+            </div>
+
+            <div class="col-auto text-end float-end ms-auto download-grp">
+              <a routerLink="/ingredients/add" class="btn btn-primary"
+                ><i class="fas fa-plus"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <table
+          class="table border-0 star-student table-hover table-center mb-0 datatable table-striped"
+        >
+          <thead class="student-thread" >
+            <tr>
+              <th>ID</th>
+              <th>libelle</th>
+
+
+              <th class="text-end">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ingredient of ingredients">
+              <td>{{ ingredient.id }}</td>
+              <td>{{ ingredient.libelle }}</td>
+
+              <td class="text-end">
+                <div class="actions">
+                  <button
+                    (click)="handleEditIngredient(ingredient)"
+                    class="btn btn-sm bg-success-light me-2"
+                  >
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button
+                    (click)="handleDeleteIngredient(ingredient)"
+                    class="btn btn-sm bg-danger-light"
+                  >
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- Pagination -->
+        <ul class="pagination justify-content-end mt-4">
+          <li class="page-item" [ngClass]="{ disabled: currentPage === 0 }">
+            <a class="page-link" tabindex="-1" (click)="goToPreviousSet()"
+              >Previous</a
+            >
+          </li>
+          <li
+            class="page-item"
+            *ngFor="let page of displayedPages"
+            [class.selected]="currentPage === page"
+          >
+            <a class="page-link" (click)="goToPage(page)">{{ page + 1 }}</a>
+          </li>
+          <li
+            class="page-item"
+            [ngClass]="{ disabled: currentPage >= totalPages - 1 }"
+          >
+            <!-- Add the following code to disable the "Suivant" button when there are no more pages to show -->
+            <button
+              class="page-link"
+              [disabled]="currentPage >= totalPages - 1"
+              (click)="goToNextSet()"
+            >
+              Next
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

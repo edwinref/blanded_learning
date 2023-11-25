@@ -23,36 +23,27 @@ export class SidebarComponent implements OnInit{
     icon: "fas fa-clipboard-list"
   },*/
     {
-      link: "/salles",
-      title: "Salles",
+      link: "/ingredients",
+      title: "Ingredients",
       icon: "../assets/img/icons/icons8-classroom-50.png"
     } ,
     {
-      link: "/filieres",
-      title: "Filières",
+      link: "/etapes",
+      title: "Etapes",
       icon: "../assets/img/icons/icons8-descending-sorting-50.png"
     },
 
+
     {
-      link: "/profs",
-      title: "Professeurs",
-      icon: "../assets/img/icons/icons8-teacher-50.png"
-    },
-    {
-      link: "/etudiant",
-      title: "Etudiants",
+      link: "/user",
+      title: "Users",
       icon: "../assets/img/icons/icons8-student-50.png"
     },
   {
-    link: "/classes",
-    title: "Classes",
+    link: "/recettes",
+    title: "Recettes",
     icon: "../assets/img/icons/icons8-level-50.png"
-  },
-    {
-      link: "/coursmodules",
-      title: "Cours Model",
-      icon: "../assets/img/icons/icons8-study-48.png"
-    },
+  }
 
 
 
@@ -63,17 +54,8 @@ sidebarProfItems = [
     link: "/home",
     title: "Home",
     icon: "../assets/img/icons/icons8-home-64.png"
-  },
-  {
-    link: "/emploitemps",
-    title: "Emploi du temps",
-    icon: "../assets/img/icons/icons8-teacher-50.png"
-  },
-  {
-    link: "/nonDesponibles",
-    title: "Constraintes",
-    icon: "../assets/img/icons/icons8-teacher-50.png"
-  },
+  }
+
 
 ]
 
@@ -82,16 +64,6 @@ sidebarProfItems = [
       link: "/home",
       title: "Home",
       icon: "../assets/img/icons/icons8-home-64.png"
-    },
-    {
-      link: "/emploitemps",
-      title: "Emploi du temps",
-      icon: "../assets/img/icons/icons8-teacher-50.png"
-    },
-    {
-      link: "/crit/add",
-      title: "Constraintes",
-      icon: "../assets/img/icons/icons8-student-50.png"
     },
 
   ]
@@ -106,7 +78,7 @@ sidebarProfItems = [
 
     if(this.cookieService.get('role') == "Administrateur"){
      this.sidebarItems= this.sidebarAdminItems;
-    }else if(this.cookieService.get('role') == "Etudiant"){
+    }else if(this.cookieService.get('role') == "User"){
      this.sidebarItems= this.sidebarEtudItems;
     }else{
       this.sidebarItems= this.sidebarProfItems;
