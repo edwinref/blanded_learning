@@ -20,9 +20,10 @@ export class StatistiqueComponent  implements OnInit
     constructor(private dpService:DepartmentService,private prfService:ProfServiceService,private clsService:ClasseService,private salleService: SalleService) { }
 
     ngOnInit(): void {
-      this.getNbDepartements();
+      this.getNbEtudiants();
       this.getNbProfs();
       this.getNbClasses();
+
       this.getNbSalles();
     }
     getNbDepartements() {

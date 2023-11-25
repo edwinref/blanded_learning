@@ -68,24 +68,6 @@
             </div>
             <div class="col-12 col-sm-4">
               <div class="form-group local-forms">
-                <label>Is Separeted <span class="login-danger">*</span></label>
-                <select class="form-control select" formControlName="isSeperated">
-                  <option value="true">Oui</option>
-                  <option value="false">Non</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-12 col-sm-4">
-              <div class="form-group local-forms angle-icon">
-                <label>Is Mutual<span class="login-danger">*</span></label>
-                <select class="form-control select" formControlName="isMetuale">
-                  <option value="true">Oui</option>
-                  <option value="false">Non</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-12 col-sm-4">
-              <div class="form-group local-forms">
                 <label>Major<span class="login-danger">*</span></label>
                 <select class="form-control select" formControlName="filiere" (change)="getClassesByFiliere(); getSemestreByFiliere()" [(ngModel)]="selectedFiliereId">
                   <option value="" disabled selected>Choose a Major</option>

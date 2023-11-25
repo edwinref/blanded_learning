@@ -37,8 +37,6 @@ export class AddNewModuleComponent implements OnInit {
       nbrTP: this.fb.control(null, [Validators.required]),
       nbrEvaluation: this.fb.control(null, [Validators.required]),
       libelle: this.fb.control(null, [Validators.required]),
-      isSeperated: this.fb.control(null, [Validators.required]),
-      isMetuale: this.fb.control(null, [Validators.required]),
       classe: this.fb.control(null, [Validators.required]), // Assuming you have a form control for selecting a classe
       filiere: this.fb.control(null, [Validators.required]),
       semestre: this.fb.control(null, [Validators.required]),
