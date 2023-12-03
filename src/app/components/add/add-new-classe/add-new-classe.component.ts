@@ -85,7 +85,19 @@ export class AddNewClasseComponent implements OnInit {
           (data) => {
             console.log('Response data:', data);
             this.classe = data;
-            Swal.fire('Succès', 'Classe ajoutée avec succès', 'success');
+            const obj = new Groupe();
+            obj.classe = this.classe
+            obj.libelle ='gr1';
+            this.groupeService.saveGroupe(obj).subscribe(
+              (data) => {
+                console.log("grouppe :")
+                console.log(data);
+              },
+              (error) => {
+                console.log(error)
+              }
+            );
+            Swal.fire('success', 'Class added successfully with a default groupe GR1 ', 'success');
             // Reset the form
             this.newClassFormGroup.reset();
           },

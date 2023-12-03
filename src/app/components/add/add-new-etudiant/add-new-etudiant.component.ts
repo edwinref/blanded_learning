@@ -129,7 +129,7 @@ export class AddNewEtudiantComponent {
     if (this.newProfFormGroup.valid) {
       const newEtudiant: Etudiant = this.newProfFormGroup.value;
       const selectedClasseId: number = +newEtudiant.classe;
-      const selectedGroupeId: number | undefined = +newEtudiant.groupe;
+      const selectedGroupeId: number = +newEtudiant.groupe;
 
       console.log(this.newProfFormGroup.value);
 
@@ -146,10 +146,12 @@ export class AddNewEtudiantComponent {
         }
 
         console.log("class" + classeId.id);
-        this.profService.saveEtudiant(newEtudiant, classeId.id).subscribe({
+        console.log("etuudd")
+        console.log(newEtudiant)
+        this.profService.saveEtudiant2(newEtudiant).subscribe({
           next: (data) => {
             console.log('dataaa ');
-            console.log(newEtudiant);
+            console.log(data);
             Swal.fire('Success', 'Etudiant ajouté avec succès', 'success');
             this.router.navigateByUrl('/etudiant');
           },

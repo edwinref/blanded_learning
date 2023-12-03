@@ -1,6 +1,15 @@
 .schedule-table table thead tr {
   background: #0e4d85;
 }
+.custom-event {
+  width: 100%;
+  background-color: blue;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px; /* Add padding if needed */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
 
 .schedule-table table thead th {
   padding: 6px 12px;

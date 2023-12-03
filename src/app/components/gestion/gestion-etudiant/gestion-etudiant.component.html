@@ -56,7 +56,7 @@
             <td>{{ etud.nom }}</td>
             <td>{{ etud.email }}</td>
             <td>{{ etud.classe.libelle }}</td>
-            <td>grp</td>
+            <td>{{etud.groupe.libelle}}</td>
             <td class="text-end">
               <div class="actions">
                 <button data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="handleCritereEtud(etud)"

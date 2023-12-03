@@ -80,10 +80,10 @@
               </div>
             </div>
 
-            <div class="col-12 col-sm-4" *ngIf="selectedClasseId != null && groupes.length > 0">
+            <div class="col-12 col-sm-4">
               <div class="form-group local-forms">
-                <label>Groupe</label>
-                <select class="form-control select" formControlName="groupe">
+                <label>Groupe<span class="login-danger">*</span></label>
+                <select class="form-control select" formControlName="groupe" required>
                   <option value="" disabled selected>Choose a groupe of this classe</option>
                   <option *ngFor="let groupe of groupes" [value]="groupe.id">{{ groupe.libelle }}</option>
                   <!-- Add more group options as needed -->

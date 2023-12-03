@@ -30,6 +30,11 @@ export class EtudiantService {
   public saveEtudiant(etud:Etudiant, classeId: number):Observable<Etudiant>{
     return this.http.post<Etudiant>(`${environment.backendHost}/etudiant?classeId=${classeId}`, etud);
   }
+
+  public saveEtudiant2(etud:Etudiant):Observable<Etudiant>{
+    return this.http.post<Etudiant>(`${environment.backendHost}/etudiant/save`, etud);
+  }
+
   public searchEtud(id : any):Observable<Etudiant[]>{
     return this.http.get<Etudiant[]>(environment.backendHost+"/etudiant/"+id)
   }

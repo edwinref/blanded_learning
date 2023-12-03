@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -49,7 +49,11 @@ import { AddCriteriaComponent } from './components/add/add-criteria/add-criteria
 import { GestionGroupsComponent } from './components/gestion/gestion-groups/gestion-groups.component';
 import { EditGroupsComponent } from './components/edit/edit-groups/edit-groups.component';
 import { AddGroupComponent } from './components/add/add-group/add-group.component';
-
+import {SchedulerModule} from "angular-calendar-scheduler";
+import {CalendarModule, DateAdapter, MOMENT} from 'angular-calendar';
+import {adapterFactory} from "angular-calendar/date-adapters/moment";
+import moment from 'moment';
+import {FullCalendarModule} from "@fullcalendar/angular";
 @NgModule({
   declarations: [
     AppComponent,
@@ -104,8 +108,12 @@ import { AddGroupComponent } from './components/add/add-group/add-group.componen
     ReactiveFormsModule,
     BrowserAnimationsModule,
     FormsModule,
+    FullCalendarModule
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'en-US' },
+    { provide: MOMENT, useValue: moment }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
