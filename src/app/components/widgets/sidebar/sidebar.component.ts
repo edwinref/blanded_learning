@@ -30,9 +30,18 @@ export class SidebarComponent implements OnInit{
     {
       link: "/filieres",
       title: "Majors",
-      icon: "../assets/img/icons/icons8-descending-sorting-50.png"
+      icon: "../assets/img/icons/icons8-level-50.png"
     },
-
+    {
+      link: "/classes",
+      title: "Grades",
+      icon: "../assets/img/icons/icons8-level-50.png"
+    },
+    {
+      link: "/groups",
+      title: "Groups",
+      icon: "../assets/img/icons/icons8-level-50.png"
+    },
     {
       link: "/profs",
       title: "Professors",
@@ -43,16 +52,8 @@ export class SidebarComponent implements OnInit{
       title: "Students",
       icon: "../assets/img/icons/icons8-student-50.png"
     },
-  {
-    link: "/classes",
-    title: "Grades",
-    icon: "../assets/img/icons/icons8-level-50.png"
-  },
-    {
-      link: "/groups",
-      title: "Groups",
-      icon: "../assets/img/icons/icons8-level-50.png"
-    },
+
+
     {
       link: "/coursmodules",
       title: "Cours Model",
