@@ -109,6 +109,8 @@ export class GestionModuleComponent implements OnInit {
 
   filieres:Filiere[]=[];
   fetchFilieres() {
+
+
     this.filiereService.getAllFilieres().subscribe(
       (response: any) => {
         if (response && Array.isArray(response.content)) {

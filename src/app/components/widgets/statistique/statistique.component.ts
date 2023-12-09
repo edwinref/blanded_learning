@@ -1,8 +1,13 @@
 import { SalleService } from 'src/app/services/salle.service';
 import { DepartmentService } from 'src/app/services/department.service';
 import { ProfServiceService } from 'src/app/services/prof-service.service';
+import { EtudiantService } from 'src/app/services/etud-service.service';
+
 import { Component, OnInit } from '@angular/core';
 import { ClasseService } from 'src/app/services/classe.service';
+import { FiliereService } from 'src/app/services/filiere.service';
+
+
 
 @Component({
   selector: 'app-statistique',
@@ -11,28 +16,24 @@ import { ClasseService } from 'src/app/services/classe.service';
 })
 export class StatistiqueComponent  implements OnInit
 {
-  nombreDepartements:number=0;
   nombreProfs:number=0;
+  nombreEtudiants:number=0;
   nombreClasses:number=0;
+  nombreFilieres:number=0;
   nombreSalles:number=0;
 
 
-    constructor(private dpService:DepartmentService,private prfService:ProfServiceService,private clsService:ClasseService,private salleService: SalleService) { }
+    constructor(private etudiantService:EtudiantService,private prfService:ProfServiceService,private clsService:ClasseService,private filiereService:FiliereService,private salleService: SalleService) { }
 
     ngOnInit(): void {
       this.getNbEtudiants();
       this.getNbProfs();
       this.getNbClasses();
+      this.getNbFilieres();
 
       this.getNbSalles();
     }
-    getNbDepartements() {
-       this.dpService.searchDepartments("",0,6).subscribe(
-      (data) => {
-        this.nombreDepartements= data.totalElements;
-      }
-    );
-    }
+
     getNbProfs() {
       this.prfService.getProfs(0,6).subscribe(
       (data) => {
@@ -41,9 +42,9 @@ export class StatistiqueComponent  implements OnInit
     );
     }
   getNbEtudiants() {
-    this.prfService.getProfs(0,6).subscribe(
+    this.etudiantService.getEtudiants(0,6).subscribe(
       (data) => {
-        this.nombreProfs= data.totalElements;
+        this.nombreEtudiants= data.totalElements;
       }
     );
   }
@@ -54,6 +55,13 @@ export class StatistiqueComponent  implements OnInit
       }
     );
     }
+  getNbFilieres() {
+    this.filiereService.getFilieres(0,6).subscribe(
+      (data) => {
+        this.nombreFilieres= data.totalElements;
+      }
+    );
+  }
     getNbSalles() {
       this.salleService.getSalles(0,6).subscribe(
       (data) => {

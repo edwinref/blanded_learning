@@ -6,6 +6,7 @@ import {PageClasse, PageGroup} from '../models/profPage.models';
 import { Classe } from '../models/classes.models';
 import {Groupe} from "../models/groupe.model";
 import {Etudiant} from "../models/etudiant.model";
+import {Module} from "../models/modules.models";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,10 @@ import {Etudiant} from "../models/etudiant.model";
 export class GroupeService {
 
   constructor(private http:HttpClient) { }
+  public getGroupes(): Observable<Groupe[]> {
+    return this.http.get<Groupe[]>(`${environment.backendHost}/groupes`);
+  }
+
 
   public saveGroupe(groupe: Groupe): Observable<Groupe> {
     // Include filiereId as a query parameter in the request
