@@ -61,6 +61,7 @@
           <tr>
 
             <th>Label</th>
+            <th>Majors</th>
             <th>Classe</th>
             <th class="text-end">Action</th>
           </tr>
@@ -68,6 +69,7 @@
           <tbody>
           <tr *ngFor="let group of groups">
             <td>{{ group.libelle }}</td>
+            <td>{{ group.classe.filiere.libelle}}</td>
             <td>{{ group.classe.libelle}}</td>
             <td class="text-end">
               <div class="actions">

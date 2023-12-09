@@ -44,6 +44,7 @@
             <th>First Name</th>
             <th>Family Name</th>
             <th>Email</th>
+            <th>Major</th>
             <th>Grade</th>
             <th>Grp</th>
             <th>Actions</th>
@@ -55,6 +56,7 @@
             <td>{{ etud.prenom }}</td>
             <td>{{ etud.nom }}</td>
             <td>{{ etud.email }}</td>
+            <td>{{ etud.classe.filiere.libelle }}</td>
             <td>{{ etud.classe.libelle }}</td>
             <td>{{etud.groupe.libelle}}</td>
             <td class="text-end">
