@@ -80,7 +80,7 @@ export class TimetableComponent implements OnInit {
     {
       title: 'Aassurance qualité logiciel',
       start: '2023-11-30T10:30:00',
-      backgroundColor: '#8EACCD',
+      backgroundColor: '#D7E5CA',
       textColor: 'white',
       borderColor: 'black',
       extendedProps: {
@@ -102,7 +102,7 @@ export class TimetableComponent implements OnInit {
     {
       title: "recherche d'emploie",
       start: '2023-12-01T14:30:00',
-      backgroundColor: '#8EACCD',
+      backgroundColor: '#D7E5CA',
       textColor: 'white',
       borderColor: 'black',
       extendedProps: {
@@ -179,7 +179,7 @@ export class TimetableComponent implements OnInit {
     {
       title: 'Aassurance qualité logiciel',
       start: '2023-12-07T10:30:00',
-      backgroundColor: '#8EACCD',
+      backgroundColor: '#D7E5CA',
       textColor: 'white',
       borderColor: 'black',
       extendedProps: {
@@ -201,7 +201,7 @@ export class TimetableComponent implements OnInit {
     {
       title: "recherche d'emploie",
       start: '2023-12-08T14:30:00',
-      backgroundColor: '#8EACCD',
+      backgroundColor: '#D7E5CA',
       textColor: 'white',
       borderColor: 'black',
       extendedProps: {
@@ -421,6 +421,7 @@ export class TimetableComponent implements OnInit {
     content.style.border = 'none';
     content.style.borderRadius = '5px';
     content.style.padding = '5px';
+    content.style.width = '100%';
 
     return { domNodes: [content] };
   }

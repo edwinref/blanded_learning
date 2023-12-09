@@ -38,14 +38,18 @@
         <table class="table table-striped">
           <thead>
           <th>Module</th>
+          <th>Major</th>
           <th>class</th>
+          <th>semester</th>
           <th>on remote hours</th>
           <th>on site hours</th>
           <th>edit</th>
           </thead>
           <tr *ngFor="let m of modules">
             <td><h4 class="page-title">{{m.libelle}}</h4></td>
+            <td><h4 class="page-title">{{m.classe.filiere.libelle}}</h4></td>
             <td><h4 class="page-title">{{m.classe.libelle}}</h4></td>
+            <td><h4 class="page-title">{{m.semestre}}</h4></td>
             <td><h4 class="page-title">{{m.volumeHoraireOnRemote}}</h4></td>
             <td><h4 class="page-title">{{m.volumeHoraireOnsite}}</h4></td>
             <td>
