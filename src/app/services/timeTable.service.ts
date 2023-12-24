@@ -16,4 +16,10 @@ export class TimeTableService {
   public getAllTimeByClasse(id : number): Observable<TimeSlotClasse[]> {
     return this.http.get<TimeSlotClasse[]>(`${environment.backendHost}/generate/`+id);
   }
+  public getAllTimeByProf(id : number): Observable<TimeSlotClasse[]> {
+    return this.http.get<TimeSlotClasse[]>(`${environment.backendHost}/generate/prof/`+id);
+  }
+  public generate(selectedOption:string){
+    return this.http.get(`${environment.backendHost}/generate/generate/`+selectedOption);
+  }
 }

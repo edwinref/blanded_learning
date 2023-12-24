@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { CalendarOptions, EventClickArg, EventContentArg } from "@fullcalendar/core";
-import dayGridPlugin from '@fullcalendar/daygrid';
+import {Component, OnInit} from '@angular/core';
+import {CalendarOptions, EventClickArg, EventContentArg} from "@fullcalendar/core";
+import dayGridPlugin from "@fullcalendar/daygrid";
 import {EtudiantService} from "../../services/etudiant.service";
 import {CookieService} from "ngx-cookie-service";
 import {TimeTableService} from "../../services/timeTable.service";
 import {SessionService} from "../../services/session.service";
 import {Session} from "../../models/session.model";
+import {ProfServiceService} from "../../services/prof-service.service";
 
 @Component({
-  selector: 'app-timetable',
-  templateUrl: './timetable.component.html',
-  styleUrls: ['./timetable.component.css']
+  selector: 'app-timetable-prof',
+  templateUrl: './timetable-prof.component.html',
+  styleUrls: ['./timetable-prof.component.css']
 })
-export class TimetableComponent implements OnInit {
+export class TimetableProfComponent implements OnInit {
 
   //events:any[]=[]
 
@@ -44,13 +45,11 @@ export class TimetableComponent implements OnInit {
 
     console.log(this.calendarOptions)
     this.getEtudByID();
-    this.getSession();
 
   }
-  constructor(private etudeService:EtudiantService,
+  constructor(private etudeService:ProfServiceService,
               private cookieService: CookieService,
-              private timeSlotClasseService:TimeTableService,
-              private sessionService: SessionService) {
+              private timeSlotClasseService:TimeTableService) {
   }
 
   sessions:Session[]=[];
@@ -60,12 +59,12 @@ export class TimetableComponent implements OnInit {
     const userId = Number(this.cookieService.get('userId'));
 
 
-    this.etudeService.getById(userId).subscribe(
+    this.etudeService.getProf(userId).subscribe(
       (etudData: any) => {
         this.etud = etudData;
         console.log(this.etud);
 
-        this.timeSlotClasseService.getAllTimeByClasse(this.etud.classe.id).subscribe(
+        this.timeSlotClasseService.getAllTimeByProf(this.etud.id).subscribe(
           (timeSlotData: any[]) => {
             this.timeSlot = timeSlotData;
             console.log(this.timeSlot);
@@ -80,17 +79,17 @@ export class TimetableComponent implements OnInit {
                 textColor: 'black',
                 borderColor: 'black',
                 extendedProps: {
-                  instructor: slot.module.enseignant.nom,
+                  instructor: slot.module.classe.libelle,
                   location: slot.salle,
                 },
               };
               if (eventtopush.backgroundColor == null){
-                if (this.sessions[0].mode == 'On site'){
+                if (slot.module.mode == 'On Site'){
                   eventtopush.backgroundColor = "#8EACCD"
-                }else if(this.sessions[0].mode == 'Hybride'){
+                }else if(slot.module.mode == 'Hybride'){
                   eventtopush.backgroundColor = "#D7E5CA"
                 }
-                else if(this.sessions[0].mode == 'Remote'){
+                else if(slot.module.mode == 'Remote'){
                   eventtopush.backgroundColor = "#F6ECA9"
                 }
               }
@@ -111,15 +110,6 @@ export class TimetableComponent implements OnInit {
     );
   }
 
-  getSession() {
-
-
-    this.sessionService.getSession(Number(this.cookieService.get('userId'))).subscribe(data =>{
-      this.sessions = data;
-      console.log(this.sessions);
-
-    })
-  }
 
 
   handleEventClick(arg: EventClickArg) {

@@ -91,8 +91,11 @@
                 <label>Semestre </label>
                 <select class="form-control select" formControlName="semestre">
                   <option value="" disabled selected>Choose a semester</option>
-                  <option *ngFor="let semester of semesters" [value]="semester">
-                    {{ semester }}
+                  <option>
+                    S1
+                  </option>
+                  <option>
+                    S2
                   </option>
                 </select>
               </div>

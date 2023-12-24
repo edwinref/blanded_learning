@@ -1,0 +1,47 @@
+<app-page-header
+  [link]="'Manipulation'"
+  [prev]="'Manipulation'"
+  [current]="'Manipulation'"
+></app-page-header>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card card-table">
+      <div class="card-body">
+        <div class="page-header">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="page-title">Manipulations</h3>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <div class="button-container">
+            <table style="width: 100%;">
+              <tr>
+                <td>Semester :</td>
+                <td><select [(ngModel)]="selectedOption">
+                  <option value="option1" selected>1</option>
+                  <option value="option2">2</option>
+                  <!-- Add more options as needed -->
+                </select></td>
+
+              </tr>
+              <tr>
+              <td>            <button type="button" class="block" (click)="chooseSessionMode()">Choose Session Mode</button>
+              </td>
+              <td>            <button type="button" class="block generate-plan" (click)="generatePlanning()">Generate Planning</button>
+              </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" [type]="'square-jelly-box'" [fullScreen]="true">
+  <p style="color: white">Loading...</p>
+</ngx-spinner>

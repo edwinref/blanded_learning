@@ -15,4 +15,7 @@ export class SessionService {
   public getSession(id: number): Observable<Session[]> {
     return this.http.get<Session[]>(environment.backendHost + "/session/" +id);
   }
+  public getallSessions() {
+    return this.http.get(environment.backendHost + "/runAlgorithm");
+  }
 }
