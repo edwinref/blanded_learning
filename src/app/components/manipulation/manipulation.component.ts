@@ -25,7 +25,7 @@ export class ManipulationComponent {
       Swal.fire('Success', 'Sessions generated successfuly', 'success');
     },error => {
       this.spinner.hide();
-      Swal.fire('error', 'Some students did not entred their data yet !', 'error');
+      Swal.fire('Warning', 'Modes generated, but some students did not entred their data yet !', 'warning');
     })
   }
   generatePlanning(){
