@@ -70,9 +70,13 @@ export class TimetableComponent implements OnInit {
             this.timeSlot = timeSlotData;
             console.log(this.timeSlot);
 
+            let dataList = this.sortDataList();
+            console.log(dataList)
+
+
             this.events = []; // Clear events array before populating it with new data
             // Map timeSlot data into FullCalendar events
-            this.timeSlot.forEach(slot => {
+            dataList.forEach(slot => {
               let eventtopush = {
                 title: slot.module.libelle,
                 start: slot.day,
@@ -85,17 +89,30 @@ export class TimetableComponent implements OnInit {
                 },
               };
               if (eventtopush.backgroundColor == null){
-                if (this.sessions[0].mode == 'On site'){
+                if (this.sessions[0].mode == 'On site') {
                   eventtopush.backgroundColor = "#8EACCD"
-                }else if(this.sessions[0].mode == 'Hybride'){
+                } else if (this.sessions[0].mode == 'Hybride') {
                   eventtopush.backgroundColor = "#D7E5CA"
-                }
-                else if(this.sessions[0].mode == 'Remote'){
+                } else if (this.sessions[0].mode == 'Remote') {
                   eventtopush.backgroundColor = "#F6ECA9"
+                }
+                if(this.events[this.events.length-1]?.backgroundColor=="#CD8D7A"){
+                  eventtopush.backgroundColor = "#8EACCD";
+                }
+              }
+              if(this.events[this.events.length-1]?.backgroundColor!="#CD8D7A" && eventtopush.backgroundColor!="#CD8D7A") {
+                if (this.events[this.events.length - 1]?.start.split("T")[1] == "08:30:00") {
+                  eventtopush.backgroundColor = this.events[this.events.length - 1]?.backgroundColor;
+                } else if (this.events[this.events.length - 1]?.start.split("T")[1] == "12:30:00") {
+                  eventtopush.backgroundColor = this.events[this.events.length - 1]?.backgroundColor;
+                } else if (this.events[this.events.length - 1]?.start.split("T")[1] == "13:30:00") {
+                  eventtopush.backgroundColor = this.events[this.events.length - 1]?.backgroundColor;
                 }
               }
               this.events.push(eventtopush);
             });
+
+            console.log(this.events[this.events.length-1].start.split("T")[1])
 
             // After populating events, update the calendarOptions
             this.calendarOptions.events = this.events;
@@ -156,6 +173,16 @@ export class TimetableComponent implements OnInit {
 
     return { domNodes: [content] };
   }
+
+  sortDataList(): any[] {
+    return this.timeSlot.sort((a, b) => {
+      const dateA = new Date(a.day);
+      const dateB = new Date(b.day);
+      return dateA.getTime() - dateB.getTime();
+    });
+  }
+
+
 
 
 
