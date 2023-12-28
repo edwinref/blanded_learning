@@ -16,20 +16,27 @@
         </div>
         <div class="table-responsive">
           <div class="button-container">
-            <table style="width: 100%;">
+            <table class="table table-hover">
               <tr>
-                <td>Semester :</td>
-                <td><select [(ngModel)]="selectedOption">
-                  <option value="1" selected>1</option>
-                  <option value="2">2</option>
-                  <!-- Add more options as needed -->
-                </select></td>
+                <td><img src="/assets/img/mode.png" width="50%" alt="Logo" /></td>
+                <td>            <button type="button" class="block" (click)="chooseSessionMode()">Generate corresponding course modes</button>
+                </td>
+
 
               </tr>
               <tr>
-              <td>            <button type="button" class="block" (click)="chooseSessionMode()">Choose Session Mode</button>
-              </td>
-              <td>            <button type="button" class="block generate-plan" (click)="generatePlanning()">Generate Planning</button>
+                <td class="semester-select">
+                  <img src="/assets/img/scheduling.png" width="30%" alt="Logo" />
+
+                </td>
+
+                <td>   Semester:
+                  <select class="custom-select" [(ngModel)]="selectedOption">
+                    <option value="1" selected>S1</option>
+                    <option value="2">S2</option>
+                    <!-- Add more options as needed -->
+                  </select>
+                  <button type="button" class="block generate-plan" (click)="generatePlanning()">Generate Planning</button>
               </td>
               </tr>
             </table>
