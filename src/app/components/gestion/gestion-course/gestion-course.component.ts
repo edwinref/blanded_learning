@@ -172,6 +172,14 @@ export class GestionModuleComponent implements OnInit {
     affect.module = form.value.module;
     affect.groupe = form.value.groupe;
     console.log(affect)
+    let moduleeee = form.value.module;
+    moduleeee.enseignant = form.value.prof
+    console.log(moduleeee)
+    this.moduleService.createModule(moduleeee, moduleeee.classe.id,moduleeee.filiere.id).subscribe(data =>{
+      console.log(data)
+    },error => {
+      console.log(error)
+    })
     this.affectservice.saveAffect(affect).subscribe(data =>{
       console.log(data)
       Swal.fire('Success', 'Module Affected successfuly', 'success');
