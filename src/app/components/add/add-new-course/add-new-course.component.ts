@@ -57,7 +57,7 @@ export class AddNewModuleComponent implements OnInit {
             console.log("claaas " + classeItem.id);
           });
           if (this.classe.length > 0) {
-            this.newModuleFormGroup.patchValue({ filiere: this.classe[0] });
+            this.newModuleFormGroup.patchValue({ classe: this.classe[0] });
           }
         } else {
           console.error('Unexpected response from the server:', response);
@@ -103,15 +103,15 @@ export class AddNewModuleComponent implements OnInit {
       const selectedFiliereId: number = +newModule.filiere;
 
       // Find the corresponding class and filiere objects
-      const classe = this.classe.find((cl) => cl.id === selectedClasseId);
       const filiere = this.filiere.find((fi) => fi.id === selectedFiliereId);
 
-      if (classe && filiere) {
-        newModule.classe = classe;
+      if (filiere) {
         newModule.filiere = filiere;
 
         // Create a Classe object with the selected ID
-        console.log("class", classe.id);
+        console.log("class", newModule.classe.id);
+        console.log("modulleeee a stocker:")
+        console.log(newModule)
         this.moduleService.saveModule(newModule).subscribe({
           next: data => {
             Swal.fire('Success', 'Module added successfully', 'success');
