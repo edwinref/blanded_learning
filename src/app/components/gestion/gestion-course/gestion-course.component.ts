@@ -180,33 +180,41 @@ export class GestionModuleComponent implements OnInit {
     affect.groupe = form.value.groupe;
     console.log(affect)
     let moduleeee = form.value.module;
-    moduleeee.enseignant = form.value.prof
+    form.value.module!.enseignant = form.value.prof
     console.log(moduleeee)
-    this.moduleService.createModule(moduleeee, moduleeee.classe.id,moduleeee.filiere.id).subscribe(data =>{
-      console.log(data)
-    },error => {
-      console.log(error)
-    })
-    this.affectservice.saveAffect(affect).subscribe(data =>{
+    this.moduleService.saveModule(moduleeee).subscribe(data =>{
       console.log(data)
       Swal.fire('Success', 'Module Affected successfuly', 'success');
-        const buttonElement = this.close.nativeElement as HTMLButtonElement;
-        buttonElement.click();
-        form.reset();
-
-    },
-      err => {
-      console.error(err);
-      if (err.error && err.error.message) {
-        Swal.fire('Error', err.error.message, 'error');
-      } else {
-        Swal.fire('Error', 'erreuur', 'error');
-      }
-        const buttonElement = this.close.nativeElement as HTMLButtonElement;
-        buttonElement.click();
-        form.reset()
-    }
-    )
+      const buttonElement = this.close.nativeElement as HTMLButtonElement;
+      buttonElement.click();
+      form.reset();
+    },error => {
+      console.log(error)
+      Swal.fire('Error', 'erreuur', 'error');
+      const buttonElement = this.close.nativeElement as HTMLButtonElement;
+      buttonElement.click();
+      form.reset();
+    })
+    // this.affectservice.saveAffect(affect).subscribe(data =>{
+    //   console.log(data)
+    //   Swal.fire('Success', 'Module Affected successfuly', 'success');
+    //     const buttonElement = this.close.nativeElement as HTMLButtonElement;
+    //     buttonElement.click();
+    //     form.reset();
+    //
+    // },
+    //   err => {
+    //   console.error(err);
+    //   if (err.error && err.error.message) {
+    //     Swal.fire('Error', err.error.message, 'error');
+    //   } else {
+    //     Swal.fire('Error', 'erreuur', 'error');
+    //   }
+    //     const buttonElement = this.close.nativeElement as HTMLButtonElement;
+    //     buttonElement.click();
+    //     form.reset()
+    // }
+    // )
   }
   hideModal() {
     const modal = this.renderer.selectRootElement('#exampleModal');

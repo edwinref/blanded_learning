@@ -112,7 +112,7 @@ export class AddNewModuleComponent implements OnInit {
 
         // Create a Classe object with the selected ID
         console.log("class", classe.id);
-        this.moduleService.createModule(newModule, classe.id, filiere.id).subscribe({
+        this.moduleService.saveModule(newModule).subscribe({
           next: data => {
             Swal.fire('Success', 'Module added successfully', 'success');
             this.router.navigateByUrl('/coursmodules');

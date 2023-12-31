@@ -45,6 +45,13 @@ export class ModuleService  {
     );
   }
 
+  public saveModule(module: Module): Observable<Module> {
+    return this.http.post<Module>(
+      `${environment.backendHost}/modules/save`,
+      module
+    );
+  }
+
 
   // Update an existing module by ID
   updateModule(id: number, module: Module, classeId: number, filiereId: number): Observable<Module> {
