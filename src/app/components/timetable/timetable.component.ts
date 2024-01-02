@@ -75,6 +75,7 @@ export class TimetableComponent implements OnInit {
             let dataList = this.sortDataList();
             console.log(dataList)
 
+            let i: number = 0;
 
             this.events = []; // Clear events array before populating it with new data
             // Map timeSlot data into FullCalendar events
@@ -100,8 +101,14 @@ export class TimetableComponent implements OnInit {
                   eventtopush.title = slot.module.libelle + " (On site)"
                   eventtopush.backgroundColor = "#8EACCD"
                 } else if (this.filteredSessions[0].mode == 'Hybride') {
-                  eventtopush.title = slot.module.libelle + " (Hybride)"
-                  eventtopush.backgroundColor = "#D7E5CA"
+                  if(i%2 == 1){
+                    eventtopush.title = slot.module.libelle + " (On site)"
+                    eventtopush.backgroundColor = "#8EACCD"
+                  }else{
+                    eventtopush.title = slot.module.libelle + " (On Remote)"
+                    delete eventtopush.extendedProps.location;
+                    eventtopush.backgroundColor = "#F6ECA9"
+                  }
                 } else if (this.filteredSessions[0].mode == 'Remote') {
                   eventtopush.title = slot.module.libelle + " (On Remote)"
                   delete eventtopush.extendedProps.location;
@@ -128,6 +135,7 @@ export class TimetableComponent implements OnInit {
                 }
               }
               this.events.push(eventtopush);
+              i++;
             });
 
             console.log(this.events[this.events.length-1].start.split("T")[1])
@@ -188,6 +196,7 @@ export class TimetableComponent implements OnInit {
     content.style.borderRadius = '5px';
     content.style.padding = '5px';
     content.style.width = '100%';
+    content.style.height = '100%';
 
     return { domNodes: [content] };
   }
