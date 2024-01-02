@@ -40,6 +40,8 @@ export class TimetableComponent implements OnInit {
     eventClick: this.handleEventClick.bind(this),
     eventContent: this.customizeEvent.bind(this)
   };
+
+  filteredSessions: Session[] = [];
   ngOnInit(): void {
 
     console.log(this.calendarOptions)
@@ -88,12 +90,17 @@ export class TimetableComponent implements OnInit {
                   location: slot.salle,
                 },
               };
+              this.filterSessionsByModule(slot.module.id)
+              console.log(this.filteredSessions)
+              if (this.filteredSessions.length ==0){
+                this.filteredSessions = this.sessions;
+              }
               if (eventtopush.backgroundColor == null){
-                if (this.sessions[0].mode == 'On site') {
+                if (this.filteredSessions[0].mode == 'On site') {
                   eventtopush.backgroundColor = "#8EACCD"
-                } else if (this.sessions[0].mode == 'Hybride') {
+                } else if (this.filteredSessions[0].mode == 'Hybride') {
                   eventtopush.backgroundColor = "#D7E5CA"
-                } else if (this.sessions[0].mode == 'Remote') {
+                } else if (this.filteredSessions[0].mode == 'Remote') {
                   eventtopush.backgroundColor = "#F6ECA9"
                 }
                 if(this.events[this.events.length-1]?.backgroundColor=="#CD8D7A"){
@@ -180,6 +187,11 @@ export class TimetableComponent implements OnInit {
       const dateB = new Date(b.day);
       return dateA.getTime() - dateB.getTime();
     });
+  }
+
+  filterSessionsByModule(id :number) {
+    this.filteredSessions = [];
+      this.filteredSessions = this.sessions.filter(session => session.module.id === id);
   }
 
 
