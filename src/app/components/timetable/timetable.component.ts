@@ -97,14 +97,25 @@ export class TimetableComponent implements OnInit {
               }
               if (eventtopush.backgroundColor == null){
                 if (this.filteredSessions[0].mode == 'On site') {
+                  eventtopush.title = slot.module.libelle + " (On site)"
                   eventtopush.backgroundColor = "#8EACCD"
                 } else if (this.filteredSessions[0].mode == 'Hybride') {
+                  eventtopush.title = slot.module.libelle + " (Hybride)"
                   eventtopush.backgroundColor = "#D7E5CA"
                 } else if (this.filteredSessions[0].mode == 'Remote') {
+                  eventtopush.title = slot.module.libelle + " (On Remote)"
+                  delete eventtopush.extendedProps.location;
                   eventtopush.backgroundColor = "#F6ECA9"
                 }
                 if(this.events[this.events.length-1]?.backgroundColor=="#CD8D7A"){
                   eventtopush.backgroundColor = "#8EACCD";
+                }
+              }else {
+                if(eventtopush.backgroundColor =="#8EACCD"){
+                  eventtopush.title = slot.module.libelle + " (On site)"
+                }
+                if(eventtopush.backgroundColor =="#CD8D7A"){
+                  eventtopush.title = slot.module.libelle + " (Eval)"
                 }
               }
               if(this.events[this.events.length-1]?.backgroundColor!="#CD8D7A" && eventtopush.backgroundColor!="#CD8D7A") {
