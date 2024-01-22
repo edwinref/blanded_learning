@@ -1,5 +1,5 @@
 import {Component, OnInit, Renderer2} from '@angular/core';
-import {FormBuilder, NgForm} from "@angular/forms";
+import {FormBuilder, FormGroup, NgForm, Validators} from "@angular/forms";
 import {Module} from "../../../models/modules.models";
 import Swal from "sweetalert2";
 import {ModuleService} from "../../../services/module-service.service";
@@ -20,7 +20,18 @@ import {Groupe} from "../../../models/groupe.model";
   styleUrls: ['./affect-model.component.css']
 })
 export class AffectModelComponent implements OnInit {
+
+    newProfFormGroup!: FormGroup;
   ngOnInit(): void {
+      this.newProfFormGroup = this.fb.group({
+
+          classe: this.fb.control(null, [Validators.required]),
+          groupe: this.fb.control(null),
+          module: this.fb.control(null, [Validators.required]),
+          prof: this.fb.control(null, [Validators.required]),
+          civilite: this.fb.control(null, [Validators.required])
+      });
+
     this.getAllProf();
     this.fetchFilieres();
 
@@ -81,7 +92,8 @@ export class AffectModelComponent implements OnInit {
   }
   modulles :Module[] = [];
 
-  loadModulles(id:any) {
+  loadModulles(event:any) {
+    const id = event.target.value
     console.log(id)
     console.log("-----------------------------")
     this.moduleService.getModullesByClasse(id).subscribe(
@@ -97,7 +109,8 @@ export class AffectModelComponent implements OnInit {
 
   groupes:Groupe[]=[];
 
-  getGroupesByClasse(id:any) {
+  getGroupesByClasse(event:any) {
+    const id = event.target.value;
     this.groupeService.getByClasse(id).subscribe(data =>{
       this.groupes = data;
       console.log(this.groupes)
@@ -106,42 +119,24 @@ export class AffectModelComponent implements OnInit {
     })
   }
 
-  affect(form: NgForm) {
-    console.log(form.value)
-    // You can also access the form object if needed
-    let moduleeee:Module = form.value.module;
-    form.value.module.enseignant = form.value.prof
-    console.log(moduleeee)
-    this.moduleService.saveModule(moduleeee).subscribe(data =>{
-      console.log(data)
-      Swal.fire('Success', 'Module Affected successfuly', 'success');
-      form.reset();
-      this.router.navigateByUrl('/coursmodules');
-    },error => {
-      console.log(error)
-      Swal.fire('Error', 'erreuur', 'error');
-      form.reset();
-    })
-    // this.affectservice.saveAffect(affect).subscribe(data =>{
-    //   console.log(data)
-    //   Swal.fire('Success', 'Module Affected successfuly', 'success');
-    //     const buttonElement = this.close.nativeElement as HTMLButtonElement;
-    //     buttonElement.click();
-    //     form.reset();
-    //
-    // },
-    //   err => {
-    //   console.error(err);
-    //   if (err.error && err.error.message) {
-    //     Swal.fire('Error', err.error.message, 'error');
-    //   } else {
-    //     Swal.fire('Error', 'erreuur', 'error');
-    //   }
-    //     const buttonElement = this.close.nativeElement as HTMLButtonElement;
-    //     buttonElement.click();
-    //     form.reset()
-    // }
-    // )
-  }
+  affect() {
+    console.log(this.newProfFormGroup.value)
+          console.log(this.newProfFormGroup.value);
+          // You can also access the form object if needed
+          let moduleeee: Module = this.newProfFormGroup.value.module;
+          console.log(moduleeee)
+          moduleeee.enseignant = this.newProfFormGroup.value.prof;
+          console.log(moduleeee)
+          this.moduleService.saveModule(moduleeee).subscribe(data => {
+              console.log(data)
+              Swal.fire('Success', 'Module Affected successfuly', 'success');
+              this.newProfFormGroup.reset();
+              this.router.navigateByUrl('/coursmodules');
+          }, error => {
+              console.log(error)
+              Swal.fire('Error', 'erreuur', 'error');
+              this.newProfFormGroup.reset();
+          })
+      }
 
 }
